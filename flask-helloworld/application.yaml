@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-app
+  namespace: argocd  # ArgoCD's namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ahsin-s/k8s.git # Your repo
+    targetRevision: HEAD
+    path: app  # Path to manifest.yaml
+  destination:
+    server: in-cluster
+    namespace: apps
+  syncPolicy:
+    automated:  # Enables polling and auto-sync
+      prune: true  # Delete resources if removed from Git
+      selfHeal: true  # Fix drifts automatically
