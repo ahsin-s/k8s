@@ -10,7 +10,7 @@ spec:
     targetRevision: HEAD
     path: app  # Path to manifest.yaml
   destination:
-    server: in-cluster
+    server: arn:aws:eks:us-east-2:956336999236:cluster/dev-cluster
     namespace: apps
   syncPolicy:
     automated:  # Enables polling and auto-sync
