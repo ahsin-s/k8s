@@ -19,6 +19,13 @@ spec:
         image: 956336999236.dkr.ecr.us-east-2.amazonaws.com/flask-helloworld:latest
         ports:
         - containerPort: 5000
+        resources: # ← Add this block
+          requests:
+            cpu: "250m"             # 0.25 vCPU (minimum valid)
+            memory: "512Mi"         # 0.5 GiB (aligns with 0.25 vCPU tier)
+          limits: # Strongly recommended: match requests for Guaranteed QoS
+            cpu: "250m"
+            memory: "512Mi"
 ---
 apiVersion: v1
 kind: Service
